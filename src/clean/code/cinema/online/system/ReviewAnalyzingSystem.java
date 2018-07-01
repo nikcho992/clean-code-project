@@ -17,7 +17,11 @@ public class ReviewAnalyzingSystem {
 		this.reviewAnalyzer = reviewAnalyzer;
 		movieAverageRating = new HashMap<>();
 	}
-
+	
+	public Map<Movie, PairPointsOccurrences> getMovieAverageRatingMap() {
+		return this.movieAverageRating;
+	}
+	
 	public void processMovieReview(Movie movie, String review) {
 		double reviewRating = reviewAnalyzer.getReviewSentiment(review);
 

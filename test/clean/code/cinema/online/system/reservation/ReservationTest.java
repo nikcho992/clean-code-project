@@ -8,7 +8,6 @@ import clean.code.cinema.online.system.reservation.core.*;
 import static org.junit.Assert.assertEquals;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
