@@ -56,4 +56,8 @@ public class User {
 	public void writeMovieReview(Movie movie, String review) {
 		reviewAnalyzing.processMovieReview(movie, review);
 	}
+	
+	public double getAverageMovieRating(Movie movie) {
+		return reviewAnalyzing.getAverageMovieRating(movie);
+	}
 }
