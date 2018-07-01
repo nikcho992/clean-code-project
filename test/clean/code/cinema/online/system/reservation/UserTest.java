@@ -56,6 +56,7 @@ public class UserTest {
 
 	private final String REVIEW_1 = "It was such a compelling story. I think this is one amazing and wonderful movie. Totally recommend it.";
 	private final String REVIEW_2 = "Refreshing and positive movie.";
+
 	@Test
 	public void testShouldCheckIfUserBooksTicketSuccessfully() throws AlreadyReservedException,
 			ProjectionNotFoundException, InvalidSeatException, ExpiredProjectionException {
@@ -93,28 +94,27 @@ public class UserTest {
 		assertEquals((Double) reviewAnalyzing.getMovieAverageRatingMap().get(movie).getReviewPoints(),
 				(Double) analyzer.getReviewSentiment(REVIEW_1));
 	}
-	
+
 	@Test
 	public void testShouldCheckIfUserWritesMoreThanOneReviewsForTheSameMovieSuccessfully() {
 		nick.writeMovieReview(movie, REVIEW_1);
 		nick.writeMovieReview(movie, REVIEW_2);
-		
+
 		assertEquals(reviewAnalyzing.getMovieAverageRatingMap().get(movie).getOccurrences(), 2);
 	}
-	
+
 	@Test
 	public void testShouldGetAverageMovieRating() {
 		nick.writeMovieReview(movie, REVIEW_1);
 		nick.writeMovieReview(movie, REVIEW_2);
-		
-		double actualAverageRating = 
-				(analyzer.getReviewSentiment(REVIEW_1) + analyzer.getReviewSentiment(REVIEW_2)) / 2;
-		
+
+		double actualAverageRating = (analyzer.getReviewSentiment(REVIEW_1) + analyzer.getReviewSentiment(REVIEW_2)) / 2;
+
 		double expectedAverageRating = nick.getAverageMovieRating(movie);
-		
-		assertEquals((Double)expectedAverageRating, (Double)actualAverageRating);
+
+		assertEquals((Double) expectedAverageRating, (Double) actualAverageRating);
 	}
-	
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testShouldThrowIllegalArgumentExceptionWhenGettingRatingForNotIncludedMovie() {
 		nick.getAverageMovieRating(movie2);

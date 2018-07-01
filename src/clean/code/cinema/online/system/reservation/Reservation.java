@@ -13,7 +13,7 @@ import clean.code.cinema.online.system.reservation.core.*;
 import clean.code.cinema.online.system.reservation.exceptions.*;
 
 public class Reservation implements CinemaReservationSystem {
-	
+
 	private Map<Movie, Set<Projection>> cinemaProgram;
 	private Set<Ticket> tickets;
 
@@ -21,15 +21,15 @@ public class Reservation implements CinemaReservationSystem {
 		this.cinemaProgram = cinemaProgram;
 		this.tickets = new HashSet<>();
 	}
-	
+
 	public boolean isProjectionPresent(Ticket ticket) {
 		return cinemaProgram.get(ticket.getMovie()).contains(ticket.getProjection());
 	}
-	
+
 	public Set<Ticket> getTickets() {
 		return this.tickets;
 	}
-	
+
 	public void bookTicket(Ticket ticket) throws AlreadyReservedException, ProjectionNotFoundException,
 			InvalidSeatException, ExpiredProjectionException {
 
@@ -85,10 +85,10 @@ public class Reservation implements CinemaReservationSystem {
 		Collections.sort(movies);
 		return movies;
 	}
-	
+
 	public String checkWhenMovieIsShown(Movie movie) {
 		Set<LocalDateTime> movieShowTimes = new HashSet<>();
-		
+
 		for (Projection currentProjection : cinemaProgram.get(movie)) {
 			movieShowTimes.add(currentProjection.getDate());
 		}

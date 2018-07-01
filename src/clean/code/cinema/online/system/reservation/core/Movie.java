@@ -6,7 +6,6 @@ public class Movie implements Comparable<Movie> {
 	private int duration;
 	private MovieGenre genre;
 
-	
 	public Movie(String name, int duration, MovieGenre genre) {
 		this.setName(name);
 		this.setDuration(duration);

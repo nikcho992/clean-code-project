@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class MovieReviewAnalyzer implements SentimentAnalyzer{
+public class MovieReviewAnalyzer implements SentimentAnalyzer {
 	private final static String UNKNOWN = "unknown";
 	private final static String NEGATIVE = "negative";
 	private final static String SOMEWHAT_NEGATIVE = "somewhat negative";
@@ -23,9 +23,11 @@ public class MovieReviewAnalyzer implements SentimentAnalyzer{
 
 	private Set<String> stopwords;
 
-	// used for computing sentiment score; in the first element of the Pair
-	// we will accumulate all review points for the word and in the second - how many
-	// times the word occurred.
+	/*
+	 * used for computing sentiment score; in the first element of the Pair we will
+	 * accumulate all review points for the word and in the second - how many times
+	 * the word occurred.
+	 */
 	private Map<String, PairPointsOccurrences> words;
 
 	// used for storing the sentiment score calculated from the map 'words'
@@ -93,8 +95,7 @@ public class MovieReviewAnalyzer implements SentimentAnalyzer{
 
 		for (Map.Entry<String, PairPointsOccurrences> entry : words.entrySet()) {
 
-			sentimentScore.put(entry.getKey(),
-					entry.getValue().getReviewPoints() / entry.getValue().getOccurrences());
+			sentimentScore.put(entry.getKey(), entry.getValue().getReviewPoints() / entry.getValue().getOccurrences());
 		}
 	}
 
@@ -190,8 +191,8 @@ public class MovieReviewAnalyzer implements SentimentAnalyzer{
 			throw new IllegalArgumentException("You should enter a positive number");
 		}
 
-		List<String> mostNegative = sentimentScore.entrySet().stream()
-				.sorted(Comparator.comparing(Map.Entry::getValue)).map(Map.Entry::getKey).collect(Collectors.toList());
+		List<String> mostNegative = sentimentScore.entrySet().stream().sorted(Comparator.comparing(Map.Entry::getValue))
+				.map(Map.Entry::getKey).collect(Collectors.toList());
 
 		if (n > sentimentScore.size()) {
 			return mostNegative;

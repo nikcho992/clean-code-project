@@ -17,11 +17,11 @@ public class ReviewAnalyzingSystem {
 		this.reviewAnalyzer = reviewAnalyzer;
 		movieAverageRating = new HashMap<>();
 	}
-	
+
 	public Map<Movie, PairPointsOccurrences> getMovieAverageRatingMap() {
 		return this.movieAverageRating;
 	}
-	
+
 	public void processMovieReview(Movie movie, String review) {
 		double reviewRating = reviewAnalyzer.getReviewSentiment(review);
 
@@ -33,16 +33,16 @@ public class ReviewAnalyzingSystem {
 							movieAverageRating.get(movie).getOccurrences() + 1));
 		}
 	}
-	
+
 	public double getAverageMovieRating(Movie movie) {
 		if (!movieAverageRating.containsKey(movie)) {
 			throw new IllegalArgumentException("This movie has no reviews.");
-		} 
-		
+		}
+
 		double totalMovieRating = movieAverageRating.get(movie).getReviewPoints();
 		double numberOfMovieReviews = movieAverageRating.get(movie).getOccurrences();
 		double averageMovieRating = totalMovieRating / numberOfMovieReviews;
-		
+
 		return averageMovieRating;
 	}
 }
