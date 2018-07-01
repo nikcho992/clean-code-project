@@ -1,5 +1,6 @@
 package clean.code.cinema.online.system.reservation;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -79,5 +80,14 @@ public class Reservation implements CinemaReservationSystem {
 
 		Collections.sort(movies);
 		return movies;
+	}
+	
+	public String checkWhenMovieIsShown(Movie movie) {
+		Set<LocalDateTime> movieShowTimes = new HashSet<>();
+		
+		for (Projection currentProjection : cinemaProgram.get(movie)) {
+			movieShowTimes.add(currentProjection.getDate());
+		}
+		return movieShowTimes.toString();
 	}
 }
