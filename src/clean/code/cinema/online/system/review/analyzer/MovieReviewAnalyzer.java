@@ -49,7 +49,7 @@ public class MovieReviewAnalyzer implements SentimentAnalyzer{
 		try (BufferedReader br = new BufferedReader(new FileReader(stopwordsFileName))) {
 
 			while ((currentLine = br.readLine()) != null) {
-				this.stopwords.add(currentLine);
+				stopwords.add(currentLine);
 			}
 		} catch (IOException e) {
 			e.getMessage();
@@ -72,13 +72,13 @@ public class MovieReviewAnalyzer implements SentimentAnalyzer{
 		try (BufferedReader br = new BufferedReader(new FileReader(reviewsFileName))) {
 			while ((currentLine = br.readLine()) != null) {
 				currentRating = 0.0;
-				this.lineWords.clear();
+				lineWords.clear();
 
 				currentLine = currentLine.toLowerCase();
-				this.lineWords.addAll(Arrays.asList(
+				lineWords.addAll(Arrays.asList(
 						currentLine.split("[\\s\\t\\+\\=\\$\\&\\#\\;\\-\\.\\'\\?\\,\\\"\\!\\'\\`\\/\\:\\\\*]+")));
-				currentRating = Double.parseDouble(this.lineWords.get(0));
-				this.lineWords.remove(0);
+				currentRating = Double.parseDouble(lineWords.get(0));
+				lineWords.remove(0);
 
 				for (String word : this.lineWords) {
 					processSingleWord(word, currentRating);
@@ -93,7 +93,7 @@ public class MovieReviewAnalyzer implements SentimentAnalyzer{
 
 		for (Map.Entry<String, PairPointsOccurrences> entry : words.entrySet()) {
 
-			this.sentimentScore.put(entry.getKey(),
+			sentimentScore.put(entry.getKey(),
 					entry.getValue().getReviewPoints() / entry.getValue().getOccurrences());
 		}
 	}
@@ -157,12 +157,12 @@ public class MovieReviewAnalyzer implements SentimentAnalyzer{
 			throw new IllegalArgumentException("You should enter a positive number");
 		}
 
-		List<String> mostFrequent = this.words.entrySet().stream()
+		List<String> mostFrequent = words.entrySet().stream()
 				.sorted(Map.Entry.<String, PairPointsOccurrences>comparingByValue(
 						Comparator.comparing(PairPointsOccurrences::getOccurrences).reversed()))
 				.map(Map.Entry::getKey).collect(Collectors.toList());
 
-		if (n > this.words.size()) {
+		if (n > words.size()) {
 			return mostFrequent;
 		} else {
 			return mostFrequent.subList(0, n);
@@ -174,11 +174,11 @@ public class MovieReviewAnalyzer implements SentimentAnalyzer{
 			throw new IllegalArgumentException("You should enter a positive number");
 		}
 
-		List<String> mostPositive = this.sentimentScore.entrySet().stream()
+		List<String> mostPositive = sentimentScore.entrySet().stream()
 				.sorted(Map.Entry.<String, Double>comparingByValue().reversed()).map(Map.Entry::getKey)
 				.collect(Collectors.toList());
 
-		if (n > this.sentimentScore.size()) {
+		if (n > sentimentScore.size()) {
 			return mostPositive;
 		} else {
 			return mostPositive.subList(0, n);
@@ -190,10 +190,10 @@ public class MovieReviewAnalyzer implements SentimentAnalyzer{
 			throw new IllegalArgumentException("You should enter a positive number");
 		}
 
-		List<String> mostNegative = this.sentimentScore.entrySet().stream()
+		List<String> mostNegative = sentimentScore.entrySet().stream()
 				.sorted(Comparator.comparing(Map.Entry::getValue)).map(Map.Entry::getKey).collect(Collectors.toList());
 
-		if (n > this.sentimentScore.size()) {
+		if (n > sentimentScore.size()) {
 			return mostNegative;
 		} else {
 			return mostNegative.subList(0, n);
@@ -201,10 +201,10 @@ public class MovieReviewAnalyzer implements SentimentAnalyzer{
 	}
 
 	public int getSentimentDictionarySize() {
-		return this.sentimentScore.size();
+		return sentimentScore.size();
 	}
 
 	public boolean isStopWord(String word) {
-		return this.stopwords.contains(word);
+		return stopwords.contains(word);
 	}
 }
