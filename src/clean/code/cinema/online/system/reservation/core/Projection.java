@@ -34,6 +34,10 @@ public class Projection {
 		return this.maxCapacity;
 	}
 	
+	public int getFreeSeats() {
+		return this.freeSeats;
+	}
+	
 	public void setMovie(Movie movie) {
 		this.movie = movie;
 	}
@@ -57,9 +61,6 @@ public class Projection {
 		return this.date.isBefore(currentDate);
 	}
 	
-	public int getFreeSeats() {
-		return this.freeSeats;
-	}
 	
 	public void releaseSeat() {
 		if (freeSeats == maxCapacity) {

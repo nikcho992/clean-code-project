@@ -26,6 +26,10 @@ public class Reservation implements CinemaReservationSystem {
 		return cinemaProgram.get(ticket.getMovie()).contains(ticket.getProjection());
 	}
 	
+	public Set<Ticket> getTickets() {
+		return this.tickets;
+	}
+	
 	public void bookTicket(Ticket ticket) throws AlreadyReservedException, ProjectionNotFoundException,
 			InvalidSeatException, ExpiredProjectionException {
 
