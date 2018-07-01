@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class ReservationSystemTest {
+public class ReservationTest {
 	
 	Movie movie = new Movie("The best offer", 120, MovieGenre.THRILLER);
 	Movie movie2 = new Movie("Lame", 100, MovieGenre.COMEDY);
@@ -45,7 +45,7 @@ public class ReservationSystemTest {
 		program.put(movie, set1);
 		program.put(movie2, set2);
 
-		ReservationSystem cinema = new ReservationSystem(program);
+		Reservation cinema = new Reservation(program);
 
 		cinema.bookTicket(ticket);
 		cinema.bookTicket(ticket2);

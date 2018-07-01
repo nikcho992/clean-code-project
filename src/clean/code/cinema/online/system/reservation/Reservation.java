@@ -11,12 +11,12 @@ import java.util.Set;
 import clean.code.cinema.online.system.reservation.core.*;
 import clean.code.cinema.online.system.reservation.exceptions.*;
 
-public class ReservationSystem implements CinemaReservationSystem {
+public class Reservation implements CinemaReservationSystem {
 	
 	private Map<Movie, Set<Projection>> cinemaProgram;
 	private Set<Ticket> tickets;
 
-	public ReservationSystem(Map<Movie, Set<Projection>> cinemaProgram) {
+	public Reservation(Map<Movie, Set<Projection>> cinemaProgram) {
 		this.cinemaProgram = cinemaProgram;
 		this.tickets = new HashSet<>();
 	}
