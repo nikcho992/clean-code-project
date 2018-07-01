@@ -34,7 +34,7 @@ public class Hall {
 
 	public void setRows(int rows) {
 		if (rows < 0) {
-			throw new IllegalArgumentException("Invalid argument.");
+			throw new IllegalArgumentException("You should set a positive number.");
 		}
 
 		this.rows = rows;
@@ -42,7 +42,7 @@ public class Hall {
 
 	public void setRowSeats(int rowSeats) {
 		if (rowSeats < 0) {
-			throw new IllegalArgumentException("Invalid argument.");
+			throw new IllegalArgumentException("You should set a positive number.");
 		}
 
 		this.rowSeats = rowSeats;
