@@ -22,7 +22,7 @@ public class MoviewReviewAnalyzerTest {
 	private final String REVIEW_8 = "Immersive ecstasy: energizing artwork!";
 
 	MovieReviewAnalyzer analyzer = new MovieReviewAnalyzer("movieReviews.txt", "stopwords.txt");
-	MovieReviewAnalyzer customAnalyzer = new MovieReviewAnalyzer("myReview.txt", "myStop.txt");
+	MovieReviewAnalyzer customAnalyzer = new MovieReviewAnalyzer("reviewTesting.txt", "stopwordsTesting.txt");
 
 	@Test
 	public void testShouldGetReviewSentimentIncludingKnownWords() {
