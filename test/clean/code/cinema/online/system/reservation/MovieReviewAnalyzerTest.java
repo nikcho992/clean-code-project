@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import clean.code.cinema.online.system.review.analyzer.MovieReviewAnalyzer;
 
-public class MoviewReviewAnalyzerTest {
+public class MovieReviewAnalyzerTest {
 
 	private final String REVIEW_1 = "It was such a compelling story. I think this is one amazing and wonderful movie. Totally recommend it.";
 	private final String REVIEW_2 = "Понеже всички български думи са непознати за алгоритъма ни, очаквам отрицателен резултат.";
